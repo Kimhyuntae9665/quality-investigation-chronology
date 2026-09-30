@@ -1,0 +1,5 @@
+# P10 reused source provenance
+
+- quality_queue/tokenizer.py is an unchanged MIT-licensed copy of P06 equipment_desk/tokenizer.py from repository commit 858f2d93382c9438525f5dbb7dad844e9f51faff, source SHA-256 2138d43f7a065ccf0b03f95d46971b04c176de945284a73d64937b43cc5e5815. It reconstructs the pinned installed Qwen GGUF tokenizer from bounded metadata, not model weights. Optional CPU package: tokenizers 0.23.2. The independent P10 app/server does not import it.
+- quality_queue/inference_guard.py copies only the shared user-owned flock and fail-closed timeout-barrier subset from P01 workbench/llm.py, commit 721949d17891bbb009b31b19a20469bd0946991c (MIT). The default lease path is the documented user-owned runtime path; no clone ancestry or global setting is used. The P10 development script is the only importer.
+- All other P10 code and diagram shapes were written for this independent fictional prototype. No n8n template JSON, vendor diagrams, private model weights, or production documents were copied.

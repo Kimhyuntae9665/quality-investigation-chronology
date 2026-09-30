@@ -1,0 +1,36 @@
+{
+  "at": "2026-09-30T18:56:38.889810+00:00",
+  "request_wall_s": 5.415,
+  "http_request_count": 1,
+  "done": true,
+  "done_reason": "stop",
+  "ollama_metrics": {
+    "total_duration": 5412909541,
+    "load_duration": 1683933652,
+    "prompt_eval_count": 1267,
+    "prompt_eval_duration": 325088760,
+    "eval_count": 201,
+    "eval_duration": 2534702405
+  },
+  "content_chars": 930,
+  "thinking_chars": null,
+  "resources_after": {
+    "gpu_csv_mib_percent": "3556, 4249, 88",
+    "meminfo_kib": {
+      "MemTotal": 32806192,
+      "MemAvailable": 24925752
+    }
+  },
+  "structural_status": "incomplete_or_abstained",
+  "meaningful_sample_fields": false,
+  "correct_4_of_50": false,
+  "proposal_check": {
+    "schema_valid": true,
+    "complete_for_development_case": false,
+    "source_linked_observations": [],
+    "observed_values": {},
+    "question_count": 0,
+    "failure": "incomplete_or_abstained",
+    "semantic_scope": "two sample quantities only; no causal conclusion validated"
+  }
+}

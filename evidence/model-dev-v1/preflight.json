@@ -1,0 +1,40 @@
+{
+  "created_at_utc": "2026-09-30T18:56:07.239362+00:00",
+  "development_only": true,
+  "generation_requests": 0,
+  "ollama_version": "0.17.7",
+  "model_tag": "qwen3:4b",
+  "model_tag_digest": "359d7dd4bcdab3d86b87d73ac27966f4dbb9f5efdfcc75d34a8764a09474fae7",
+  "model_layer_digest": "sha256:3e4cb14174460404e7a233e531675303b2fbf7749c02f91864fe311ab6344e4f",
+  "gguf_metadata_sha256": "82e92c41ef7f47671922432da66dce6a15bb89d54b429f410820f47e91583621",
+  "template_sha256": "2d54db2b9bb29ce7db54fea63a891f5859603813c555b1f88b5e0994652897f9",
+  "input_hash": "c836c3cc8e2805869d5593e64c55af849953b778f1673711c1cb01dd90bc2fc4",
+  "source_file_hashes": {
+    "source-corpus.json": "e93e3f3f254189add8b7cbeb6751ba922a1c0fe59eb8fac265776b2c165a2f05",
+    "additional-source-captures.json": "97904f91634a0e73b64df23c8b27719292035fe8889fddabc24066744da5e645"
+  },
+  "source_ids": [
+    "QDOC-004",
+    "QDOC-002",
+    "QDOC-003",
+    "QDOC-005",
+    "QDOC-006"
+  ],
+  "request_sha256": "2924d0a3ea15ebb0e202ac598ca07c8ed509c589ea49e18576f1b70e665ef483",
+  "schema_sha256": "53e56f05561dd141f44eb4f42dfc7d946e8d2cc4032212c9fe1e2dd4a0b2edb3",
+  "rendered_prompt_sha256": "27d2f536c31dc594b274f6f9736fbd04e05e6fe822b6f3f04b1ff493c9eb6045",
+  "rendered_prompt_utf8_bytes": 3333,
+  "input_tokens_cpu": 1267,
+  "output_plus_headroom_reserve": 384,
+  "context_limit": 4096,
+  "fits": true,
+  "render_wall_s": 1.657,
+  "runner_token_parity_proven": false,
+  "resources_after_render": {
+    "gpu_csv_mib_percent": "3550, 4255, 99",
+    "meminfo_kib": {
+      "MemTotal": 32806192,
+      "MemAvailable": 24907172
+    }
+  }
+}
