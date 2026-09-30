@@ -2,7 +2,7 @@
 
 - Date: 2026-09-30 UTC; target: remote RTX 4060 host, P10 loopback port 19094.
 - Packet: Library quality-chronology-fixtures-v1.zip, 20,394 bytes, SHA-256 1e0eaff74ad92c0f5526eda1a672038371c41b3718c592c88f397ef5854e97bb. Public source files extracted after per-member hash verification. Evaluator-only oracle was not extracted into this project.
-- CPU tests: python3 -m unittest discover -s tests -v; 53 tests passed. Covers cutoff admission, explicit correction replay, conflict quarantine, source hashes/quotes, denied site, local receipt, stale receipt and HTTP scope behavior.
+- CPU tests: python3 -m unittest discover -s tests -v; 55 tests passed. Covers cutoff admission, explicit correction replay, conflict quarantine, source hashes/quotes, denied site, local receipt, stale receipt and HTTP scope behavior.
 - JavaScript: node --check static/app.js passed.
 - Browser: installed Google Chrome through Playwright on actual local app. Desktop 1440x900 and mobile 390x844. Verified 09:15 5/50 and no future correction source ID, 10:00 4/50 with old value in correction history, open source, accepted handoff with five open requests, conflict acceptance disabled but return allowed, all three admitted conflict sources openable, review history and export available, changed-note receipt preserved, delayed review pending state released, delayed source read dropped after cutoff switch, and mobile scroll width 390px at 390px viewport. Script: tests/browser_demo.py.
 - Captures: artifacts/demo/01-current-desktop.png through 07-current-mobile.png are unaltered screenshots. Fictional source only. No credentials, private host address or real factory data in the app UI.
@@ -26,3 +26,11 @@
 - The current inspection row being quarantined makes product context unknown; the UI no longer asserts a product difference without an admitted current value. All three admitted conflicting captures are inspectable with status.
 - Four additional unaltered Chrome screenshots in artifacts/ui-review/ show desktop review history, desktop and 390px conflict states, and earlier cutoff after delayed source. At 390px document scroll width measured 390px; computed card prose 15.04px, controls 16px, hints 14.4px.
 - Original seven screenshots and video were regenerated on a separate updated loopback server after the actor/action policy change. No model calls were made for this UI pass.
+
+
+## Cutoff-bound history correction
+
+- Independent public review of ec13108 found that a 09:15 UI history included later 10:00 receipt capture IDs and source-bearing freeform notes. The full demo receipts remain server-side.
+- GET /api/reviews now requires active cutoff and optional capture_id, returns only receipts from that exact admitted context and excludes reviewer_note. An unscoped request is rejected. GET /api/export/receipt requires the same active context and rechecks packet fingerprint and reviewer scope; its public receipt omits reviewer_note.
+- Switching cutoff/capture/role clears the browser note draft and visible history. The earlier 09:15 screenshot was recaptured after the fix; it shows only an admitted 09:15 receipt, no QDOC-002/QDOC-012 or later 4/50.
+- Two new CPU tests cover future cutoff and differing capture projections while retaining internal notes. Actual Chrome checks the early API response, missing-cutoff rejection, late-receipt export rejection, no future ID in the visible early page, and same-context history/export. Total: 55 CPU tests.

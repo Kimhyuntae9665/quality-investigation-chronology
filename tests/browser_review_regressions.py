@@ -58,18 +58,37 @@ async def main():
             export = json.loads(Path(await download.path()).read_text())
             assert export["receipt"]["decision"] == "accepted_for_handoff"
             assert export["packet"]["typed"]["sample"]["rate_percent"] == 8
-            await page.locator("#review-note").fill("revised fictional review")
+            await page.locator("#review-note").fill("QDOC-012 QDOC-002 future sample 4/50")
             await page.locator("#review-button").click()
             await expect(page.locator("#review-history li")).to_have_count(2)
-            await expect(page.locator("#review-history li").first).to_contain_text("revised fictional review")
+            assert "QDOC-012" not in await page.locator("#review-history").inner_text()
+            later_query = "investigator=demo-reviewer-a&reviewer=demo-reviewer-a&cutoff=2026-09-30T10%3A00%3A00%2B09%3A00&capture_id="
+            late_response = await page.request.get(URL + "api/reviews?" + later_query)
+            assert late_response.status == 200
+            later_receipts = (await late_response.json())["reviews"]
+            assert len(later_receipts) == 2
+            late_id = later_receipts[0]["receipt_id"]
+            assert all("reviewer_note" not in receipt for receipt in later_receipts)
             await page.locator("#cutoff").select_option("2026-09-30T09:15:00+09:00")
             await expect(page.locator("#sample-metric")).to_have_text("5/50 · 10%")
-            await expect(page.locator("#review-history li")).to_have_count(2)
-            await expect(page.locator("#review-history li").first).to_contain_text("다른 조회 맥락")
-            assert await page.locator(".export-button").first.is_disabled()
+            await expect(page.locator("#review-history li")).to_have_count(0)
+            await expect(page.locator("#review-note")).to_have_value("")
+            early_query = "investigator=demo-reviewer-a&reviewer=demo-reviewer-a&cutoff=2026-09-30T09%3A15%3A00%2B09%3A00&capture_id="
+            early_response = await page.request.get(URL + "api/reviews?" + early_query)
+            assert early_response.status == 200
+            unscoped = await page.request.get(URL + "api/reviews?investigator=demo-reviewer-a&reviewer=demo-reviewer-a")
+            assert unscoped.status == 400
+            early_json = await early_response.text()
+            assert json.loads(early_json)["reviews"] == []
+            assert all(term not in early_json for term in ("QDOC-002", "QDOC-012", "4/50"))
+            rejected_export = await page.request.get(URL + "api/export/" + late_id + "?" + early_query)
+            assert rejected_export.status in (400, 404)
+            assert "QDOC-002" not in await page.locator("body").inner_text()
+            assert "QDOC-012" not in await page.locator("body").inner_text()
             await page.locator("#cutoff").select_option("2026-09-30T10:00:00+09:00")
             await expect(page.locator("#sample-metric")).to_have_text("4/50 · 8%")
             await page.locator("#capture").select_option("QDOC-012")
+            await expect(page.locator("#review-history li")).to_have_count(0)
             await expect(page.locator("#decision")).to_have_value("returned")
             assert await page.locator('#decision option[value="accepted_for_handoff"]').evaluate("(option) => option.disabled")
             await expect(page.locator("#review-button")).to_be_enabled()
@@ -85,14 +104,14 @@ async def main():
             await page.screenshot(path=str(OUT / "02-conflict-sources-desktop.png"), full_page=True)
             await page.locator("#review-button").click()
             await expect(page.locator("#review-result")).to_contain_text("보완 반환")
-            await expect(page.locator("#review-history li")).to_have_count(3)
+            await expect(page.locator("#review-history li")).to_have_count(1)
             async def failed_post(route):
                 await route.fulfill(status=503, content_type="application/json",
                                     body='{"error":"simulated_transport_result_unknown"}')
             await page.route("**/api/review", failed_post)
             await page.locator("#review-button").click()
             await expect(page.locator("#review-result")).to_contain_text("아래 검토 이력")
-            await expect(page.locator("#review-history li")).to_have_count(3)
+            await expect(page.locator("#review-history li")).to_have_count(1)
             await page.unroute("**/api/review", failed_post)
             # A slow review for an old cutoff must release the pending guard
             # after navigation, while its old receipt stays out of the new view.
@@ -142,7 +161,7 @@ async def main():
             await mobile.screenshot(path=str(OUT / "03-conflict-sources-mobile.png"), full_page=True)
             await browser.close()
             print("reviewer_accept=pass history_reload=pass export_revalidated=pass")
-            print("stale_context_export_blocked=pass conflict_return=pass conflict_sources=3")
+            print("future_history_api_redacted=pass cutoff_export_blocked=pass conflict_return=pass conflict_sources=3")
             print("changed_note_new_receipt=pass uncertain_post_history_recovery=pass delayed_source_cutoff=pass delayed_review_cutoff=pass")
             print("unknown_product_context=pass mobile_reflow", dims, "font_sizes", sizes)
             print("screenshots", [(x.name, x.stat().st_size) for x in sorted(OUT.glob("*.png"))])

@@ -143,16 +143,22 @@ class Handler(BaseHTTPRequestHandler):
                         out["quote_span"] = [start, end]
                     return self._json(out)
                 if path.startswith("/api/export/"):
-                    params = self._params(parsed.query, {"investigator", "reviewer"})
+                    params = self._params(parsed.query, {"investigator", "reviewer", "cutoff", "capture_id"})
+                    if "cutoff" not in params:
+                        raise ReviewError("active_cutoff_required")
                     investigator = params.get("investigator", "demo-investigator-a")
                     reviewer = params.get("reviewer", "demo-reviewer-a")
                     return self._json(self.server.reviews.export(
-                        path[len("/api/export/"):], investigator, reviewer))
+                        path[len("/api/export/"):], investigator, reviewer,
+                        params["cutoff"], params.get("capture_id") or None))
                 if path == "/api/reviews":
-                    params = self._params(parsed.query, {"investigator", "reviewer"})
+                    params = self._params(parsed.query, {"investigator", "reviewer", "cutoff", "capture_id"})
+                    if "cutoff" not in params:
+                        raise ReviewError("active_cutoff_required")
                     investigator = params.get("investigator", "demo-investigator-a")
                     reviewer = params.get("reviewer", "demo-reviewer-a")
-                    return self._json({"reviews": self.server.reviews.list_for(investigator, reviewer)})
+                    return self._json({"reviews": self.server.reviews.list_for(
+                        investigator, reviewer, params["cutoff"], params.get("capture_id") or None)})
                 return self._error(404, "not_found")
         except (SourceError, ReviewError) as error:
             reason = str(error)

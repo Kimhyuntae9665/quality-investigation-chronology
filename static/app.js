@@ -219,7 +219,7 @@ function renderHistory(receipts) {
     item.append(el("strong", "", label + " · " + receipt.receipt_id.slice(0, 10)));
     item.append(el("span", "history-meta", "자료 가용 기준 " + receipt.cutoff +
       " · " + (receipt.capture_id || "기본 원문") + " · 기록 시각 " + receipt.at));
-    if (receipt.reviewer_note) item.append(el("span", "history-meta", "메모: " + receipt.reviewer_note));
+    item.append(el("span", "history-meta", "메모 원문은 이력 조회·내보내기에 포함되지 않습니다."));
     const button = el("button", "export-button", "검토 패킷 JSON 내려받기");
     button.type = "button";
     button.disabled = !receipt.fresh || !same || receipt.decision !== "accepted_for_handoff";
@@ -237,7 +237,8 @@ async function loadHistory(turn = state.sequence) {
   }
   $("history-status").textContent = "검토 이력을 확인하고 있습니다.";
   const investigator = state.principal;
-  const q = new URLSearchParams({investigator, reviewer: state.principal});
+  const q = new URLSearchParams({investigator, reviewer: state.principal,
+    cutoff: state.cutoff, capture_id: state.capture});
   try {
     const result = await getJson("/api/reviews?" + q);
     if (turn !== state.sequence || historyTurn !== state.historySequence) return;
@@ -252,7 +253,8 @@ async function exportReceipt(receipt, button) {
   if (button.disabled || !sameReviewContext(receipt)) return;
   button.disabled = true;
   $("history-status").textContent = "내보내기 전 서버에서 현재 원문과 권한을 다시 확인합니다.";
-  const q = new URLSearchParams({investigator: state.principal, reviewer: state.principal});
+  const q = new URLSearchParams({investigator: state.principal, reviewer: state.principal,
+    cutoff: state.cutoff, capture_id: state.capture});
   try {
     const result = await getJson("/api/export/" + encodeURIComponent(receipt.receipt_id) + "?" + q);
     if (turn !== state.sequence || !sameReviewContext(receipt)) return;
@@ -309,6 +311,7 @@ function clearScopeView() {
   $("corrections").hidden = true;
   $("conflict-box").hidden = true;
   $("review-result").textContent = "";
+  $("review-note").value = "";
   $("review-button").disabled = true;
   ++state.historySequence;
   clear($("review-history"));

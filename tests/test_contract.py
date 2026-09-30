@@ -155,7 +155,7 @@ class HandoffTests(unittest.TestCase):
     def test_accept_open_questions_and_export_without_closure(self):
         receipt = self.accept()
         self.assertEqual(receipt["decision"], "accepted_for_handoff")
-        exported = self.store.export(receipt["receipt_id"], A, REVIEWER)
+        exported = self.store.export(receipt["receipt_id"], A, REVIEWER, CUT_DEFAULT)
         self.assertEqual(len(exported["packet"]["requests"]), 5)
         self.assertIn("CAPA", exported["statement"])
         self.assertTrue(exported["packet"]["operational_source_state_unchanged"])
@@ -173,13 +173,45 @@ class HandoffTests(unittest.TestCase):
                                    reviewer_note="revised fictional review")
         self.assertNotEqual(first["receipt_id"], second["receipt_id"])
         self.assertEqual(second["reviewer_note"], "revised fictional review")
-        self.assertEqual(len(self.store.list_for(A, REVIEWER)), 2)
+        self.assertEqual(len(self.store.list_for(A, REVIEWER, CUT_DEFAULT)), 2)
         repeat = self.store.record(investigator=A, reviewer=REVIEWER,
                                    cutoff=CUT_DEFAULT, capture_id=None,
                                    packet_fingerprint=view["packet_fingerprint"],
                                    decision="accepted_for_handoff",
                                    reviewer_note="revised fictional review")
         self.assertEqual(repeat["receipt_id"], second["receipt_id"])
+
+    def test_history_cutoff_projection_retains_receipt_without_future_readback(self):
+        view = packet(CUT_DEFAULT)
+        future = self.store.record(investigator=A, reviewer=REVIEWER,
+                                   cutoff=CUT_DEFAULT, capture_id=None,
+                                   packet_fingerprint=view["packet_fingerprint"],
+                                   decision="accepted_for_handoff",
+                                   reviewer_note="QDOC-012 QDOC-002 future 4/50")
+        self.assertEqual(self.store.list_for(A, REVIEWER, CUT_EARLY), [])
+        with self.assertRaisesRegex(ReviewError, "receipt_not_admitted_at_cutoff"):
+            self.store.export(future["receipt_id"], A, REVIEWER, CUT_EARLY)
+        same = self.store.list_for(A, REVIEWER, CUT_DEFAULT)
+        self.assertEqual(len(same), 1)
+        self.assertNotIn("reviewer_note", same[0])
+        self.assertEqual(self.store._items[future["receipt_id"]].reviewer_note,
+                         "QDOC-012 QDOC-002 future 4/50")
+        exported = self.store.export(future["receipt_id"], A, REVIEWER, CUT_DEFAULT)
+        self.assertEqual(exported["packet"]["typed"]["sample"]["rate_percent"], 8)
+        self.assertNotIn("reviewer_note", exported["receipt"])
+
+    def test_capture_history_is_not_visible_from_default_capture(self):
+        conflict = packet(CUT_DEFAULT, "QDOC-012")
+        receipt = self.store.record(investigator=A, reviewer=REVIEWER,
+                                    cutoff=CUT_DEFAULT, capture_id="QDOC-012",
+                                    packet_fingerprint=conflict["packet_fingerprint"],
+                                    decision="returned", reviewer_note="QDOC-012 held")
+        self.assertEqual(self.store.list_for(A, REVIEWER, CUT_DEFAULT), [])
+        same = self.store.list_for(A, REVIEWER, CUT_DEFAULT, "QDOC-012")
+        self.assertEqual(len(same), 1)
+        self.assertNotIn("reviewer_note", same[0])
+        with self.assertRaisesRegex(ReviewError, "receipt_not_admitted_at_cutoff"):
+            self.store.export(receipt["receipt_id"], A, REVIEWER, CUT_DEFAULT)
 
     def test_source_conflict_blocks_acceptance(self):
         view = packet(CUT_DEFAULT, "QDOC-012")
@@ -203,7 +235,7 @@ class HandoffTests(unittest.TestCase):
         self.assertFalse(status["fresh"])
         self.assertEqual(status["decision"], "stale")
         with self.assertRaisesRegex(ReviewError, "reviewed_handoff_unavailable"):
-            self.store.export(receipt["receipt_id"], A, REVIEWER)
+            self.store.export(receipt["receipt_id"], A, REVIEWER, CUT_DEFAULT)
 
     def test_wrong_reviewer_or_role_rejected(self):
         view = packet()
@@ -410,7 +442,7 @@ class TamperAndRevocationTests(unittest.TestCase):
                                decision="accepted_for_handoff")
         with patch.dict(PRINCIPALS, {REVIEWER: ("reviewer", ())}):
             with self.assertRaisesRegex(ReviewError, "review_scope_denied"):
-                store.export(receipt["receipt_id"], A, REVIEWER)
+                store.export(receipt["receipt_id"], A, REVIEWER, CUT_DEFAULT)
 
 if __name__ == "__main__":
     unittest.main()
