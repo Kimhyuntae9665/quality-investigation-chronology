@@ -1,0 +1,218 @@
+{
+  "dataset_kind": "original fictional component-packaging records",
+  "schema_version": "QUALITY-CHRONOLOGY-SOURCE-1",
+  "timezone": "Asia/Seoul",
+  "default_cutoff": "2026-09-30T10:00:00+09:00",
+  "documents": [
+    {
+      "id": "QDOC-001",
+      "case_id": "D-040",
+      "site": "PLANT-A",
+      "logical_id": "OBS-040",
+      "revision": 1,
+      "event_at": "2026-09-30T09:00:00+09:00",
+      "recorded_at": "2026-09-30T09:05:00+09:00",
+      "roles": [
+        "investigator",
+        "reviewer"
+      ],
+      "text": "Packaging inspection record. Line PKG-02, product P-100, lot L-090. Five incorrectly labelled units were recorded among 50 inspected units. Total lot quantity: 500 units. Cause has not been established.",
+      "content_sha256": "a8bfa8759ea91e1398b8ea3d10ee97290f91474257696ca5e022f4f0f6d7e2bf",
+      "record_type": "inspection_record",
+      "source_system": "FICTIONAL-QUALITY-REGISTER",
+      "authority": "recorded_source_statement"
+    },
+    {
+      "id": "QDOC-002",
+      "case_id": "D-040",
+      "site": "PLANT-A",
+      "logical_id": "OBS-040",
+      "revision": 2,
+      "event_at": "2026-09-30T09:00:00+09:00",
+      "recorded_at": "2026-09-30T09:20:00+09:00",
+      "roles": [
+        "investigator",
+        "reviewer"
+      ],
+      "text": "Line PKG-02, product P-100, lot L-090. Correction to the 09:00 packaging inspection. One photographed label was counted twice. The confirmed record is four incorrectly labelled units among 50 inspected units. Total lot quantity remains 500 units. This corrects QDOC-001; the total-lot defect count and cause remain unknown.",
+      "supersedes_id": "QDOC-001",
+      "content_sha256": "73ed6d622c90de6603da7981f521a2ea45272b251529c88096617a45830aeff6",
+      "record_type": "inspection_correction",
+      "source_system": "FICTIONAL-QUALITY-REGISTER",
+      "authority": "recorded_source_statement"
+    },
+    {
+      "id": "QDOC-003",
+      "case_id": "D-040",
+      "site": "PLANT-A",
+      "logical_id": "HOLD-040",
+      "revision": 1,
+      "event_at": "2026-09-30T09:10:00+09:00",
+      "recorded_at": "2026-09-30T09:12:00+09:00",
+      "roles": [
+        "investigator",
+        "reviewer"
+      ],
+      "text": "The lot L-090 status was recorded as HOLD at 09:10. This record does not confirm that every physical unit has been located or segregated.",
+      "content_sha256": "38ffedf6230a898e5bbcc52002456c22c72199b3f9ac6215ab7c2b33922e9259",
+      "record_type": "containment_record",
+      "source_system": "FICTIONAL-QUALITY-REGISTER",
+      "authority": "recorded_source_statement"
+    },
+    {
+      "id": "QDOC-004",
+      "case_id": "D-040",
+      "site": "PLANT-A",
+      "logical_id": "MAT-040",
+      "revision": 1,
+      "event_at": "2026-09-30T08:40:00+09:00",
+      "recorded_at": "2026-09-30T08:45:00+09:00",
+      "roles": [
+        "investigator",
+        "reviewer"
+      ],
+      "text": "Label roll R-7 was issued from the storeroom to line PKG-02 at 08:40. No installation time, removal time or proof of use during the 09:00 inspection is available in this exported record.",
+      "content_sha256": "54d5fb8cfa9e2195aec0f6273ae449fbfc1924d29b639914b14b1f9e36e7da2f",
+      "record_type": "material_issue_record",
+      "source_system": "FICTIONAL-QUALITY-REGISTER",
+      "authority": "recorded_source_statement"
+    },
+    {
+      "id": "QDOC-005",
+      "case_id": "D-040",
+      "site": "PLANT-A",
+      "logical_id": "ACTION-040",
+      "revision": 1,
+      "event_at": "2026-09-30T09:40:00+09:00",
+      "recorded_at": "2026-09-30T09:42:00+09:00",
+      "roles": [
+        "investigator",
+        "reviewer"
+      ],
+      "text": "Action tracker: the revised label-verification checklist was implemented at 09:40. Effectiveness review is scheduled for 2026-10-02. No completed effectiveness result is available.",
+      "content_sha256": "031eefd74e8be4bbd78914280396f1aeef779756938bb93cd379ea18c0373c71",
+      "record_type": "action_tracker",
+      "source_system": "FICTIONAL-QUALITY-REGISTER",
+      "authority": "recorded_source_statement"
+    },
+    {
+      "id": "QDOC-006",
+      "case_id": "D-040",
+      "site": "PLANT-A",
+      "logical_id": "TRAIN-040",
+      "revision": 1,
+      "event_at": "2026-09-30T09:45:00+09:00",
+      "recorded_at": "2026-09-30T09:50:00+09:00",
+      "roles": [
+        "investigator",
+        "reviewer"
+      ],
+      "text": "A supervisor recorded that a briefing occurred at 09:45. The entry references attendance attachment ATT-040. That attachment is not present in this export. The entry alone does not establish who attended.",
+      "content_sha256": "ddf54e2b4f0a4731067ebfbe4cbf3898252589040d0d64ef4f92de395afe25e4",
+      "record_type": "briefing_record",
+      "source_system": "FICTIONAL-QUALITY-REGISTER",
+      "authority": "recorded_source_statement"
+    },
+    {
+      "id": "QDOC-007",
+      "case_id": "D-010",
+      "site": "PLANT-A",
+      "logical_id": "CLOSE-010",
+      "revision": 1,
+      "event_at": "2026-09-09T15:00:00+09:00",
+      "recorded_at": "2026-09-09T15:10:00+09:00",
+      "roles": [
+        "investigator",
+        "reviewer"
+      ],
+      "text": "Historical closed case D-010 involved incorrect labels on line PKG-02, product P-200, lot L-030. Its report records an incorrect label-roll installation as the established historical cause. It records a corrective action on September 3 and a separate completed effectiveness check on September 8. The source report is available; its underlying raw investigation records are not included here.",
+      "content_sha256": "15a2b42672f7da6acbe8da9fed24eb9466bc976ca65ad6b94c9bf27194190e3d",
+      "record_type": "historical_summary",
+      "source_system": "FICTIONAL-QUALITY-REGISTER",
+      "authority": "recorded_source_statement"
+    },
+    {
+      "id": "QDOC-008",
+      "case_id": "D-020",
+      "site": "PLANT-A",
+      "logical_id": "CAUSE-020",
+      "revision": 1,
+      "event_at": "2026-09-10T11:00:00+09:00",
+      "recorded_at": "2026-09-10T11:15:00+09:00",
+      "roles": [
+        "investigator",
+        "reviewer"
+      ],
+      "text": "Historical case D-020, product P-100, line PKG-05, lot L-060. Initial note: an incorrect label roll was suspected, but this was not confirmed.",
+      "content_sha256": "730cab1b2a82841228735b1fd59771283f570a2a7c07dd777a56e5a3e83d8eb9",
+      "record_type": "historical_investigation_note",
+      "source_system": "FICTIONAL-QUALITY-REGISTER",
+      "authority": "recorded_source_statement"
+    },
+    {
+      "id": "QDOC-009",
+      "case_id": "D-020",
+      "site": "PLANT-A",
+      "logical_id": "CAUSE-020",
+      "revision": 2,
+      "event_at": "2026-09-11T16:00:00+09:00",
+      "recorded_at": "2026-09-11T16:10:00+09:00",
+      "roles": [
+        "investigator",
+        "reviewer"
+      ],
+      "text": "Historical D-020 investigation correction. The final report attributes its observed issue to scanner configuration, not the earlier suspected label-roll error in QDOC-008. Product P-100 and line PKG-05 are unchanged.",
+      "supersedes_id": "QDOC-008",
+      "content_sha256": "7fe588fe94adc30288585b244b7c23b505903a0341b7601e5daa541164da3e87",
+      "record_type": "historical_investigation_correction",
+      "source_system": "FICTIONAL-QUALITY-REGISTER",
+      "authority": "recorded_source_statement"
+    },
+    {
+      "id": "QDOC-010",
+      "case_id": "D-030",
+      "site": "PLANT-B",
+      "logical_id": "CLOSE-030",
+      "revision": 1,
+      "event_at": "2026-09-12T14:00:00+09:00",
+      "recorded_at": "2026-09-12T14:15:00+09:00",
+      "roles": [
+        "investigator",
+        "reviewer"
+      ],
+      "text": "Historical closed case D-030 involved an incorrect label report at PLANT-B, product P-300, line PKG-08. Its investigation summary attributes that historical issue to a document-selection error.",
+      "content_sha256": "46ce978e504dbadcb7fadf82cceb8c995f7970b19995e2cf89d36c9fa8f5f4da",
+      "record_type": "historical_summary",
+      "source_system": "FICTIONAL-QUALITY-REGISTER",
+      "authority": "recorded_source_statement"
+    },
+    {
+      "id": "QDOC-011",
+      "case_id": "D-040",
+      "site": "PLANT-A",
+      "logical_id": "CAUSE-040",
+      "revision": 1,
+      "event_at": "2026-09-30T09:00:00+09:00",
+      "recorded_at": "2026-09-30T11:00:00+09:00",
+      "roles": [
+        "investigator",
+        "reviewer"
+      ],
+      "text": "Current-case conclusion recorded at 11:00. The investigation report attributes D-040 to an incorrect label-roll installation. The underlying raw investigation records are not part of this export.",
+      "content_sha256": "4e78c7b8df19aad71e8a422fd047088f8e9054fdc2af76214a2b0471fb89de48",
+      "record_type": "investigation_conclusion",
+      "source_system": "FICTIONAL-QUALITY-REGISTER",
+      "authority": "recorded_source_statement"
+    }
+  ],
+  "attachment_manifest": [
+    {
+      "id": "ATT-040",
+      "present_in_export": false,
+      "referenced_by": "QDOC-006",
+      "availability_basis": "explicitly absent from this fictional export; real-world existence not assessed"
+    }
+  ],
+  "export_completeness": "Complete for the listed synthetic records and the stated attachment availability only; not complete evidence of any real factory case, stock, training, CAPA or investigation.",
+  "fixture_id": "QUALITY-CHRONOLOGY-v1"
+}

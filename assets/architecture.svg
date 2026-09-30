@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="620" height="470" viewBox="0 0 620 470" role="img" aria-labelledby="title desc">
+<title id="title">P10 공개 합성 원문에서 검토 화면까지</title>
+<desc id="desc">합성 JSON 기록이 Python 입장 및 정정 처리로 이어지고, 결과가 브라우저의 시간선과 인계 화면에 표시된다. 모델 경로는 현재 포함되지 않는다.</desc>
+<defs>
+  <pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.25" fill="#40536d"/></pattern>
+  <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#cbd6e4" stroke-width="1.6"/></marker>
+  <filter id="shadow" x="-20%" y="-25%" width="140%" height="160%"><feDropShadow dx="0" dy="8" stdDeviation="9" flood-color="#071424" flood-opacity=".35"/></filter>
+</defs>
+<rect width="620" height="470" rx="20" fill="#122237"/>
+<rect width="620" height="470" rx="20" fill="url(#dots)"/>
+<path d="M236 137 C284 137 320 137 367 137" fill="none" stroke="#d9e3ef" stroke-width="3" marker-end="url(#arrow)"/>
+<path d="M466 207 C466 236 466 250 466 281" fill="none" stroke="#d9e3ef" stroke-width="3" marker-end="url(#arrow)"/>
+<g>
+  <rect x="39" y="59" width="198" height="148" rx="19" fill="#fcfdff" stroke="#d4e0ed" stroke-width="2"/>
+  <rect x="367" y="59" width="198" height="148" rx="19" fill="#fcfdff" stroke="#d4e0ed" stroke-width="2"/>
+  <rect x="367" y="281" width="198" height="148" rx="19" fill="#fcfdff" stroke="#d4e0ed" stroke-width="2"/>
+</g>
+<g text-anchor="middle" font-family="Arial, Noto Sans, sans-serif">
+  <circle cx="138" cy="117" r="37" fill="#eef3f9"/>
+  <text x="138" y="132" fill="#d1692c" font-size="37" font-weight="700">{ }</text>
+  <text x="138" y="185" fill="#122237" font-size="24" font-weight="700">JSON</text>
+  <circle cx="466" cy="117" r="37" fill="#eef3f9"/>
+  <path d="M449 103 h20 q8 0 8 8 v7 h-19 q-8 0-8 8 v1 h-7 v-12 q0-12 6-12z" fill="#3573a5"/>
+  <circle cx="461" cy="109" r="2" fill="white"/>
+  <path d="M483 131 h-20 q-8 0-8-8 v-7 h19 q8 0 8-8 v-1 h7 v12 q0 12-6 12z" fill="#f1c14c"/>
+  <circle cx="471" cy="125" r="2" fill="white"/>
+  <text x="466" y="185" fill="#122237" font-size="24" font-weight="700">Python</text>
+  <circle cx="466" cy="338" r="37" fill="#eef3f9"/>
+  <rect x="442" y="320" width="48" height="37" rx="5" fill="none" stroke="#3278a8" stroke-width="4"/>
+  <path d="M443 331 h46" stroke="#3278a8" stroke-width="3"/>
+  <circle cx="451" cy="326" r="2" fill="#3278a8"/>
+  <circle cx="458" cy="326" r="2" fill="#3278a8"/>
+  <path d="M452 341 h29 M452 348 h21" stroke="#85a8c0" stroke-width="2"/>
+  <text x="466" y="407" fill="#122237" font-size="24" font-weight="700">Browser</text>
+</g>
+</svg>

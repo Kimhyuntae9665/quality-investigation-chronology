@@ -1,0 +1,68 @@
+{
+  "packet_id": "QUALITY-CHRONOLOGY-v1",
+  "algorithm": "SHA-256",
+  "manifest_excludes_itself": true,
+  "file_count_excluding_manifest": 12,
+  "files": [
+    {
+      "path": "IMPLEMENTATION.md",
+      "bytes": 3359,
+      "sha256": "c40987a2083176534153171560acd3f204d2a4e3b7bf445db96f3622383e81c8"
+    },
+    {
+      "path": "LICENSE.txt",
+      "bytes": 411,
+      "sha256": "4c580260210df86c54eba16d981786d85fc111e3295c2b4500bd4585ca65baf5"
+    },
+    {
+      "path": "PROVENANCE.json",
+      "bytes": 1825,
+      "sha256": "104cba841033a8e5875d885bbd90ca22448c5e86e1d29dbdad3db5a8e56b4272"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2844,
+      "sha256": "a64f5b39d1176aa907051ebaad1f190253031f1f1a0af3c2a3ef7aa54d7aed4c"
+    },
+    {
+      "path": "SOURCE-CONTRACT.md",
+      "bytes": 6527,
+      "sha256": "f5887ac2553d5622853e534fd80b516a027772d7c09ce6e8946d7cefb9059358"
+    },
+    {
+      "path": "additional-source-captures.json",
+      "bytes": 2901,
+      "sha256": "97904f91634a0e73b64df23c8b27719292035fe8889fddabc24066744da5e645"
+    },
+    {
+      "path": "evaluation/README.md",
+      "bytes": 2389,
+      "sha256": "7aa43e06cf5fbc583265b2cff763785621318d4ace88fab77df963d36f7e64c4"
+    },
+    {
+      "path": "evaluation/expected-state-oracle.json",
+      "bytes": 22479,
+      "sha256": "29ab52b8ba8e880198862ad6626d6b68dcf61ca89bb5161f4349201a9d44430a"
+    },
+    {
+      "path": "evaluation/validation-report.json",
+      "bytes": 1728,
+      "sha256": "b7b474ef819f42c3bf85ae00ebc1bdd903d045c187d0a64e32b64ac6273b1841"
+    },
+    {
+      "path": "public-output-contract.json",
+      "bytes": 2862,
+      "sha256": "db2ca1fe1ad1e20f9d4e983b539a917411feab949ad1f3fc59f3d25752921687"
+    },
+    {
+      "path": "source-corpus.json",
+      "bytes": 9347,
+      "sha256": "e93e3f3f254189add8b7cbeb6751ba922a1c0fe59eb8fac265776b2c165a2f05"
+    },
+    {
+      "path": "source-manifest.json",
+      "bytes": 1873,
+      "sha256": "897ca8cadd0ec92961e781c00b9c86af8ed889b2249e57d0f7dcd39bbd0ba1c9"
+    }
+  ]
+}

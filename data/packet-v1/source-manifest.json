@@ -1,0 +1,52 @@
+{
+  "fixture_id": "QUALITY-CHRONOLOGY-v1",
+  "prepared_date_utc": "2026-09-30",
+  "source_kind": "original fictional packaging-record narratives and metadata",
+  "license": "CC0-1.0 for original packet content only",
+  "timezone": "Asia/Seoul",
+  "date_semantics": "All event/capture/cutoff times are fictional scenario values, not real observation times.",
+  "current_case_id": "D-040",
+  "default_cutoff": "2026-09-30T10:00:00+09:00",
+  "default_principal": {
+    "principal_id": "demo-investigator-a",
+    "role": "investigator",
+    "allowed_sites": [
+      "PLANT-A"
+    ]
+  },
+  "source_files": [
+    "source-corpus.json",
+    "additional-source-captures.json"
+  ],
+  "runtime_model_allowlist": [
+    "source-corpus.json only after backend authorization/cutoff/revision admission",
+    "selected admitted record from additional-source-captures.json only when a scenario requests it",
+    "public-output-contract.json",
+    "SOURCE-CONTRACT.md"
+  ],
+  "no_model_input": [
+    "evaluation directory",
+    "expected states",
+    "scenario labels or selection rationale",
+    "inaccessible source counts or titles"
+  ],
+  "logical_record_identity": [
+    "source_system",
+    "site",
+    "case_id",
+    "logical_id"
+  ],
+  "revision_identity": [
+    "source_system",
+    "site",
+    "case_id",
+    "logical_id",
+    "revision"
+  ],
+  "content_hash_definition": "SHA-256 of text encoded as UTF-8 without additional trimming or normalization; record-envelope hash is separate and must also bind metadata.",
+  "display_rule": "Show admitted superseded records only in an explicitly historical/correction view; never treat them as current facts.",
+  "source_hashes": {
+    "source-corpus.json": "e93e3f3f254189add8b7cbeb6751ba922a1c0fe59eb8fac265776b2c165a2f05",
+    "additional-source-captures.json": "97904f91634a0e73b64df23c8b27719292035fe8889fddabc24066744da5e645"
+  }
+}

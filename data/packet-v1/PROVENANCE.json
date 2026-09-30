@@ -1,0 +1,30 @@
+{
+  "fixture_id": "QUALITY-CHRONOLOGY-v1",
+  "prepared_date_utc": "2026-09-30",
+  "source_kind": "original fictional source narratives, metadata and expected states",
+  "license": "CC0-1.0 for original packet content only",
+  "model_runs_at_authoring": 0,
+  "independent_manufacturing_SME_adjudication": false,
+  "real_customer_data": false,
+  "real_GMP_decisions_or_writes": false,
+  "authoring_note": "Original draft retained separately; this v1 removes evaluation-like narrative guidance from selected source records, preserves the underlying fictional facts, and adds three explicitly alternative captures. Every included text hash is recomputed.",
+  "references": [
+    {
+      "url": "https://www.catalent.com/news/catalent-launches-qai-to-reimagine-quality-assurance-for-its-manufacturing-services",
+      "publisher": "Catalent",
+      "publication_date": "2026-06-16",
+      "verified_date_utc": "2026-09-30",
+      "evidence_role": "Manufacturer announcement of Qai launch with human oversight",
+      "limits": "No public labeled corpus, controlled accuracy or quantified productivity result supplied"
+    },
+    {
+      "url": "https://www.microsoft.com/en/customers/story/27171-catalent-azure-openai-in-foundry-models",
+      "publisher": "Microsoft",
+      "publication_date": "2026-09-09",
+      "verified_date_utc": "2026-09-30",
+      "evidence_role": "Named customer account of near-complete rollout, documented quality-expert validation, read-only source access and no GMP-record creation/modification",
+      "limits": "Vendor/customer account, not an independent efficacy study; uses hosted GPT-4/4o and does not validate a local model"
+    }
+  ],
+  "rights_boundary": "Source links are references only. No Catalent/Microsoft text or assets are bundled; names do not imply affiliation or endorsement."
+}

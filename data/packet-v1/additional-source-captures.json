@@ -1,0 +1,63 @@
+{
+  "fixture_id": "QUALITY-CHRONOLOGY-v1",
+  "usage": "Alternative test captures. Never combine all alternatives into the base corpus. The calling scenario selects a capture by ID.",
+  "captures": [
+    {
+      "id": "QDOC-012",
+      "case_id": "D-040",
+      "site": "PLANT-A",
+      "logical_id": "OBS-040",
+      "revision": 2,
+      "event_at": "2026-09-30T09:00:00+09:00",
+      "recorded_at": "2026-09-30T09:25:00+09:00",
+      "roles": [
+        "investigator",
+        "reviewer"
+      ],
+      "text": "Line PKG-02, product P-100, lot L-090. Correction to the 09:00 packaging inspection. The confirmed record is six incorrectly labelled units among 50 inspected units. Total lot quantity remains 500 units. This corrects QDOC-001; the total-lot defect count and cause remain unknown.",
+      "supersedes_id": "QDOC-001",
+      "content_sha256": "2bc113c95f3ca37d76a4cbc06577d75d8fa720998576669bd17ee3ba1f5a94ed",
+      "record_type": "inspection_correction",
+      "source_system": "FICTIONAL-QUALITY-REGISTER",
+      "authority": "recorded_source_statement"
+    },
+    {
+      "id": "QDOC-013",
+      "case_id": "D-040",
+      "site": "PLANT-A",
+      "logical_id": "OBS-040",
+      "revision": 3,
+      "event_at": "2026-09-30T09:00:00+09:00",
+      "recorded_at": "2026-09-30T10:15:00+09:00",
+      "roles": [
+        "investigator",
+        "reviewer"
+      ],
+      "text": "Line PKG-02, product P-100, lot L-090. Additional correction to the 09:00 packaging inspection. Review of the image log confirms three incorrectly labelled units among 50 inspected units. Total lot quantity remains 500 units. This supersedes QDOC-002. The total-lot defect count and cause remain unknown.",
+      "supersedes_id": "QDOC-002",
+      "content_sha256": "a296ebc58c034c6e1da74586cec6353d646a80bf976aeb2be0018f77886c10bd",
+      "record_type": "inspection_correction",
+      "source_system": "FICTIONAL-QUALITY-REGISTER",
+      "authority": "recorded_source_statement"
+    },
+    {
+      "id": "QDOC-014",
+      "case_id": "D-040",
+      "site": "PLANT-A",
+      "logical_id": "OBS-040",
+      "revision": 3,
+      "event_at": "2026-09-30T09:00:00+09:00",
+      "recorded_at": "2026-09-30T10:15:00+09:00",
+      "roles": [
+        "investigator",
+        "reviewer"
+      ],
+      "text": "Line PKG-02, product P-100, lot L-090. Additional correction to the 09:00 packaging inspection. Four incorrectly labelled units are confirmed. The inspected-unit total cannot be recovered from this record. Total lot quantity remains 500 units. This supersedes QDOC-002. The total-lot defect count and cause remain unknown.",
+      "supersedes_id": "QDOC-002",
+      "content_sha256": "c8028a520580b7d7b07753b2eecfd4f93c76a9b49ee1c93c999cff6264c7c9b4",
+      "record_type": "inspection_correction",
+      "source_system": "FICTIONAL-QUALITY-REGISTER",
+      "authority": "recorded_source_statement"
+    }
+  ]
+}

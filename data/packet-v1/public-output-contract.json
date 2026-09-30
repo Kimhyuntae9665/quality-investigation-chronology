@@ -1,0 +1,81 @@
+{
+  "contract_version": "QUALITY-CHRONOLOGY-OUTPUT-1",
+  "purpose": "Reviewable investigation handoff; not quality-system write, disposition, CAPA closure, or root-cause adjudication",
+  "source_reference": [
+    "source_id",
+    "source_system",
+    "logical_id",
+    "revision",
+    "site",
+    "case_id",
+    "source_text_sha256",
+    "source_envelope_sha256",
+    "span_start_codepoint",
+    "span_end_codepoint_exclusive",
+    "quote"
+  ],
+  "field_contract": {
+    "sample": {
+      "incorrect_units": "integer or null",
+      "inspected_units": "integer or null",
+      "rate_fraction": "exact numerator/denominator or null; deterministic",
+      "rate_percent": "number or null; deterministic",
+      "quantity_grain": "inspected_sample",
+      "lot_total_units": "integer or null",
+      "lot_defect_units": "null unless directly evidenced; never extrapolate"
+    },
+    "current_cause": {
+      "status": [
+        "not_established_at_cutoff",
+        "reported_conclusion_available",
+        "unknown_due_to_conflict"
+      ],
+      "description": "string or null",
+      "independently_verified_by_app": "always false"
+    },
+    "containment": {
+      "recorded_status": "string or null",
+      "physical_coverage": "unknown unless directly evidenced"
+    },
+    "material": {
+      "issued_id": "string or null",
+      "installation_or_use": "unknown unless directly evidenced"
+    },
+    "action": {
+      "implementation": "recorded|not_evidenced|unknown",
+      "effectiveness": "scheduled_no_result|recorded_result|not_evidenced|unknown"
+    },
+    "briefing": {
+      "occurrence": "recorded|not_evidenced|unknown",
+      "attendance_attachment": "present|absent_from_export|unknown",
+      "individual_attendance": "not_established unless directly evidenced"
+    },
+    "historical_comparison": "case-specific similarities, differences and attributed historical conclusions, never current-cause transfer",
+    "evidence_requests": "reviewable local questions tied to exact missing evidence or uncertainty; not sent messages"
+  },
+  "backend_owned": [
+    "authorization and filtered counts",
+    "cutoff admission",
+    "revision/correction precedence",
+    "same-revision conflicts",
+    "exact arithmetic",
+    "quote/span validation",
+    "source coverage manifest",
+    "review receipt freshness",
+    "source-system state"
+  ],
+  "review_states": [
+    "draft",
+    "returned",
+    "accepted_for_handoff",
+    "stale"
+  ],
+  "acceptance_meaning": "The source-bounded handoff has been reviewed, including its explicit open questions; no claim that the investigation is complete or safe.",
+  "forbidden_outputs": [
+    "lot disposition or release",
+    "CAPA closure",
+    "real system write",
+    "confirmed current cause inferred from similar cases",
+    "unsupported allegation that a missing attachment means no action occurred"
+  ]
+}

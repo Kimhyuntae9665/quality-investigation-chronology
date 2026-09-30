@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>가상 포장 품질조사 · 근거 인계</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">FICTIONAL QUALITY WORKBENCH</p>
+      <h1>포장 품질조사 시간선</h1>
+      <p class="subhead">기록상 사건 시각과 자료 가용 시각을 나눠 기록하고, 열린 근거 요청과 함께 검토자에게 인계합니다.</p>
+    </div>
+    <div class="top-warning">합성 기록 · GMP/QMS 기록 아님 · 쓰기 연동 없음</div>
+  </header>
+  <main>
+    <section class="toolbar" aria-labelledby="scope-title">
+      <h2 id="scope-title">조회 범위</h2>
+      <label>데모 사용자
+        <select id="principal">
+          <option value="demo-investigator-a">PLANT-A 조사자</option>
+          <option value="demo-reviewer-a">PLANT-A 검토자</option>
+          <option value="demo-investigator-b">PLANT-B 조사자</option>
+          <option value="demo-no-sites">허용 사이트 없음</option>
+        </select>
+      </label>
+      <label>자료 가용 기준
+        <select id="cutoff">
+          <option value="2026-09-30T09:15:00+09:00">09:15 기준</option>
+          <option value="2026-09-30T09:20:00+09:00">09:20 기준</option>
+          <option value="2026-09-30T10:00:00+09:00" selected>10:00 기준</option>
+          <option value="2026-09-30T11:05:00+09:00">11:05 기준</option>
+          <option value="2026-09-30T10:30:00+09:00">10:30 기준</option>
+        </select>
+      </label>
+      <label>추가 캡처
+        <select id="capture"><option value="">기본 원문만</option></select>
+      </label>
+      <p id="scope-readout" class="scope-readout" aria-live="polite"></p>
+    </section>
+    <div id="notice" role="status" aria-live="polite" class="notice">원문 범위를 확인하고 있습니다.</div>
+    <section class="summary" aria-labelledby="summary-title">
+      <h2 id="summary-title">현재 읽을 수 있는 상태</h2>
+      <div class="summary-grid">
+        <div class="metric"><span>검사 표본</span><strong id="sample-metric">—</strong><small id="sample-note"></small></div>
+        <div class="metric"><span>현재 원인</span><strong id="cause-metric">—</strong><small id="cause-note"></small></div>
+        <div class="metric"><span>인계 상태</span><strong id="handoff-metric">—</strong><small id="handoff-note"></small></div>
+      </div>
+    </section>
+    <nav class="mobile-jumps" aria-label="작업 영역 이동">
+      <a href="#timeline-panel">시간선</a><a href="#comparison-panel">선례 비교</a><a href="#requests-panel">근거 요청</a>
+    </nav>
+    <div class="work-grid">
+      <section class="panel timeline-panel" id="timeline-panel" aria-labelledby="timeline-title">
+        <div class="panel-head"><div><p class="eyebrow">01 · CHRONOLOGY</p><h2 id="timeline-title">현재 사건 시간선</h2></div><span id="timeline-count" class="count"></span></div>
+        <p class="hint">기록상 사건 시각과 자료 가용 시각을 각각 표시합니다. 정정 이전 값은 현재 사실에서 제외합니다.</p>
+        <ol id="timeline" class="timeline"></ol>
+        <details id="corrections"><summary>수정 이력 · 이전 원문</summary><div id="correction-list"></div></details>
+        <div id="conflict-box" class="conflict" hidden></div>
+      </section>
+      <section class="panel comparison-panel" id="comparison-panel" aria-labelledby="comparison-title">
+        <div class="panel-head"><div><p class="eyebrow">02 · PRECEDENT</p><h2 id="comparison-title">과거 사례와 다른 점</h2></div><span id="comparison-count" class="count"></span></div>
+        <p class="hint">과거 사건의 원인은 그 사건에만 귀속됩니다. 현재 사건의 원인으로 옮기지 않습니다.</p>
+        <div id="comparisons"></div>
+        <h3>서로 다른 상태</h3>
+        <dl id="status-facts" class="facts"></dl>
+      </section>
+      <section class="panel requests-panel" id="requests-panel" aria-labelledby="requests-title">
+        <div class="panel-head"><div><p class="eyebrow">03 · EVIDENCE QUEUE</p><h2 id="requests-title">열린 근거 요청</h2></div><span id="request-count" class="count"></span></div>
+        <p class="hint">요청은 이 데모 화면에만 남습니다. 첨부가 없다는 이유로 미실행·불참을 단정하지 않습니다.</p>
+        <ul id="requests" class="requests"></ul>
+        <div class="review-box">
+          <h3>검토용 인계 기록</h3>
+          <p>열린 질문을 명시한 채 인계할 수 있습니다. 로트 처분, CAPA 종결 또는 GMP 기록 수정은 수행하지 않습니다.</p>
+          <label>결정
+            <select id="decision"><option value="accepted_for_handoff">열린 질문과 함께 인계 검토</option><option value="returned">보완 반환</option></select>
+          </label>
+          <label>검토 메모
+            <textarea id="review-note" rows="2" maxlength="1000" placeholder="합성 데모 메모"></textarea>
+          </label>
+          <button id="review-button" type="button">검토 기록 남기기</button>
+          <p id="review-result" role="status" aria-live="polite"></p>
+        </div>
+      </section>
+    </div>
+  </main>
+  <dialog id="source-dialog" aria-labelledby="source-title">
+    <div class="dialog-head"><h2 id="source-title">원문 기록</h2><button id="close-source" type="button">닫기</button></div>
+    <p id="source-meta" class="source-meta"></p>
+    <p id="source-error" role="alert"></p>
+    <pre id="source-text"></pre>
+    <p class="hint">원문 인용 문자열 검사는 진단이나 규제 적합성 검증이 아닙니다.</p>
+  </dialog>
+</body>
+</html>
