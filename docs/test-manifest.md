@@ -15,3 +15,5 @@
 - Incremental review found ambiguous transport-read/overall-deadline issues in the optional model runner. Fail-closed barrier handling, independent timer and declared-length equality were added; six CPU transport regressions pass. No extra model request was made.
 
 - Bounded v2 development contract: ten additional CPU tests; original v1 response retained. V2 model render/generation and nine evaluator cases have not run. Shared GPU lease was released.
+
+- V2 Qwen development: one generation-free actual-template render (1,671 input + 576 reserve <= 4,096), one 9.062-second generation call. JSON response had five correctly state-linked required assertions but also one history-to-current assertion, an English question, and normalized rather than literal raw number words. Strict acceptance failed. Raw receipt: evidence/model-dev-v2/. The shared lock was free and timeout marker absent after the runner exited. Formal nine-case evaluation remains unrun.

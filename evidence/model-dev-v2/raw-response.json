@@ -1,0 +1,16 @@
+{
+  "model": "qwen3:4b",
+  "created_at": "2026-09-30T19:24:46.97071052Z",
+  "message": {
+    "role": "assistant",
+    "content": "{\n  \"assertions\": [\n    {\n      \"field\": \"incorrect_units\",\n      \"status\": \"current\",\n      \"raw_value\": \"4\",\n      \"source_id\": \"QDOC-002\",\n      \"quote\": \"The confirmed record is four incorrectly labelled units among 50 inspected units.\"\n    },\n    {\n      \"field\": \"inspected_units\",\n      \"status\": \"current\",\n      \"raw_value\": \"50\",\n      \"source_id\": \"QDOC-002\",\n      \"quote\": \"The confirmed record is four incorrectly labelled units among 50 inspected units.\"\n    },\n    {\n      \"field\": \"current_cause\",\n      \"status\": \"unknown\",\n      \"raw_value\": \"unknown\",\n      \"source_id\": \"QDOC-002\",\n      \"quote\": \"This corrects QDOC-001; the total-lot defect count and cause remain unknown.\"\n    },\n    {\n      \"field\": \"incorrect_units\",\n      \"status\": \"historical\",\n      \"raw_value\": \"5\",\n      \"source_id\": \"QDOC-001\",\n      \"quote\": \"Five incorrectly labelled units were recorded among 50 inspected units.\"\n    },\n    {\n      \"field\": \"inspected_units\",\n      \"status\": \"historical\",\n      \"raw_value\": \"50\",\n      \"source_id\": \"QDOC-001\",\n      \"quote\": \"Five incorrectly labelled units were recorded among 50 inspected units.\"\n    },\n    {\n      \"field\": \"current_cause\",\n      \"status\": \"unknown\",\n      \"raw_value\": \"unknown\",\n      \"source_id\": \"QDOC-001\",\n      \"quote\": \"Cause has not been established.\"\n    }\n  ]\n  ,\n  \"evidence_request\": {\n    \"question\": \"What is the cause of the incorrect labeling for lot L-090?\",\n    \"source_id\": \"QDOC-002\",\n    \"quote\": \"This corrects QDOC-001; the total-lot defect count and cause remain unknown.\"\n  }\n}\n"
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 9060556698,
+  "load_duration": 1695800840,
+  "prompt_eval_count": 1671,
+  "prompt_eval_duration": 437213441,
+  "eval_count": 443,
+  "eval_duration": 5721823564
+}

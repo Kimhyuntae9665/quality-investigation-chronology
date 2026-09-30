@@ -1,0 +1,27 @@
+{
+  "at": "2026-09-30T19:24:47.056417+00:00",
+  "request_wall_s": 9.062,
+  "http_request_count": 1,
+  "done": true,
+  "done_reason": "stop",
+  "ollama_metrics": {
+    "total_duration": 9060556698,
+    "load_duration": 1695800840,
+    "prompt_eval_count": 1671,
+    "prompt_eval_duration": 437213441,
+    "eval_count": 443,
+    "eval_duration": 5721823564
+  },
+  "content_chars": 1565,
+  "thinking_chars": null,
+  "resources_after": {
+    "gpu_csv_mib_percent": "3556, 4249, 86",
+    "meminfo_kib": {
+      "MemTotal": 32806192,
+      "MemAvailable": 25250024
+    }
+  },
+  "structural_status": "unknown_source_not_current",
+  "development_complete": false,
+  "backend_arithmetic_only": true
+}

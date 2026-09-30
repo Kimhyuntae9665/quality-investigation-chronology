@@ -1,0 +1,14 @@
+{
+  "started_at_utc": "2026-09-30T19:24:37.865823+00:00",
+  "request_sha256": "2c75d6be5ee32ed9cbf524f11f86097e984dd88d6fb0f4556a38e9bc35b4d3ef",
+  "model_tag_digest": "359d7dd4bcdab3d86b87d73ac27966f4dbb9f5efdfcc75d34a8764a09474fae7",
+  "template_sha256": "2d54db2b9bb29ce7db54fea63a891f5859603813c555b1f88b5e0994652897f9",
+  "resources_before": {
+    "gpu_csv_mib_percent": "383, 7422, 0",
+    "meminfo_kib": {
+      "MemTotal": 32806192,
+      "MemAvailable": 25614156
+    }
+  },
+  "http_request_count_planned": 1
+}
