@@ -5,6 +5,7 @@ __pycache__/
 .DS_Store
 artifacts/*
 !artifacts/demo/
+!artifacts/ui-review/
 artifacts/demo/raw-video/
 artifacts/pw-runtime/
 AGENTS.md

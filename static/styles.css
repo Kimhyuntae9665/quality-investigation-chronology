@@ -77,3 +77,25 @@ dialog::backdrop{background:#08192380}
 @media(max-width:710px){.topbar{display:block;padding:15px}.topbar h1{font-size:1.3rem}.top-warning{max-width:none;display:inline-block;margin-top:11px}.toolbar{display:grid;grid-template-columns:1fr 1fr;gap:9px;padding:12px}.toolbar h2,.scope-readout{grid-column:1/-1}.toolbar label{min-width:0}.toolbar select{min-width:0;width:100%}.summary-grid{grid-template-columns:1fr;gap:5px}.metric{padding:6px 9px}.mobile-jumps{display:flex;gap:8px;margin:0 0 12px}.mobile-jumps a{background:#e0efed;color:#145965;border-radius:6px;padding:7px 10px;text-decoration:none;font-size:.83rem;font-weight:750}.work-grid{display:block}.panel{margin-bottom:12px;min-height:0;padding:13px}.requests{display:block}.hint{font-size:.82rem}}
 @media(max-width:390px){.toolbar{grid-template-columns:1fr}.toolbar h2,.scope-readout{grid-column:1}.mobile-jumps a{padding:6px 8px}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+
+.review-history{border-top:1px solid #b9d2d2;margin-top:13px;padding-top:10px}
+.history-head{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.history-head h4{font-size:.9rem;margin:0}
+.history-head button,.export-button{background:#fff;color:#0b5c61;border:1px solid #5a8d92;border-radius:6px;padding:6px 9px;font-size:.81rem;font-weight:700}
+#history-status{font-size:.81rem;color:#3c5965;min-height:1.4em}
+#review-history{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+#review-history li{background:#fff;border:1px solid #cbdcdd;border-radius:6px;padding:9px;font-size:.82rem}
+#review-history strong,#review-history span{display:block;overflow-wrap:anywhere}
+#review-history .history-meta{color:#45616d}
+.export-button{margin-top:6px}
+.export-button:disabled{opacity:.55;cursor:not-allowed}
+
+/* Readability pass: meaningful text at least 14px; interactive controls 16px. */
+.toolbar label,.review-box label{font-size:.9rem}
+.card p,.compare-card p,.request-card p{font-size:.94rem}
+.hint,.diff,.facts,.review-box p,#review-result,#history-status,#review-history li{font-size:.9rem}
+.source-button,.review-box button,.history-head button,.export-button,
+.mobile-jumps a,summary{font-size:1rem}
+.request-card strong{font-size:.94rem}
+#source-text{font-size:.96rem}
+@media(max-width:710px){.hint{font-size:.9rem}.mobile-jumps{flex-wrap:wrap}}

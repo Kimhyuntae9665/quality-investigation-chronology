@@ -90,6 +90,17 @@ class ChronologyContractTests(unittest.TestCase):
         self.assertEqual(set(view["conflicted_source_ids"]), {"QDOC-001", "QDOC-002", "QDOC-012"})
         self.assertNotIn("QDOC-001", [x["source_id"] for x in view["timeline"]])
 
+    def test_conflict_context_unknown_is_not_a_proven_product_difference(self):
+        view = packet(CUT_DEFAULT, "QDOC-012")
+        precedent = next(item for item in view["comparisons"] if item["case_id"] == "D-020")
+        self.assertNotIn("P-100", precedent["different_products"])
+        self.assertIn("P-100", precedent["unknown_products"])
+        self.assertEqual({row["source_id"] for row in view["conflicted_sources"]},
+                         {"QDOC-001", "QDOC-002", "QDOC-012"})
+        self.assertTrue(all(row["source_state"] == "conflicted"
+                            for row in view["conflicted_sources"]))
+        self.assertNotIn("QDOC-010", json.dumps(view))
+
     def test_later_mutually_exclusive_correction(self):
         view = packet(CUT_LATER, "QDOC-013")
         self.assertEqual(view["typed"]["sample"]["rate_percent"], 6)
@@ -151,6 +162,24 @@ class HandoffTests(unittest.TestCase):
 
     def test_duplicate_acceptance_idempotent(self):
         self.assertEqual(self.accept()["receipt_id"], self.accept()["receipt_id"])
+
+    def test_changed_review_note_is_new_receipt_and_exact_repeat_is_idempotent(self):
+        first = self.accept()
+        view = packet(CUT_DEFAULT)
+        second = self.store.record(investigator=A, reviewer=REVIEWER,
+                                   cutoff=CUT_DEFAULT, capture_id=None,
+                                   packet_fingerprint=view["packet_fingerprint"],
+                                   decision="accepted_for_handoff",
+                                   reviewer_note="revised fictional review")
+        self.assertNotEqual(first["receipt_id"], second["receipt_id"])
+        self.assertEqual(second["reviewer_note"], "revised fictional review")
+        self.assertEqual(len(self.store.list_for(A, REVIEWER)), 2)
+        repeat = self.store.record(investigator=A, reviewer=REVIEWER,
+                                   cutoff=CUT_DEFAULT, capture_id=None,
+                                   packet_fingerprint=view["packet_fingerprint"],
+                                   decision="accepted_for_handoff",
+                                   reviewer_note="revised fictional review")
+        self.assertEqual(repeat["receipt_id"], second["receipt_id"])
 
     def test_source_conflict_blocks_acceptance(self):
         view = packet(CUT_DEFAULT, "QDOC-012")

@@ -196,8 +196,10 @@ def _comparisons(snapshot: Snapshot, current: tuple[Source, ...]) -> list[dict[s
             "case_id": case_id, "precedent_only": True,
             "same_products": sorted(current_products & products),
             "same_lines": sorted(current_lines & lines),
-            "different_products": sorted(products - current_products),
-            "different_lines": sorted(lines - current_lines),
+            "different_products": sorted(products - current_products) if current_products else [],
+            "different_lines": sorted(lines - current_lines) if current_lines else [],
+            "unknown_products": sorted(products) if not current_products else [],
+            "unknown_lines": sorted(lines) if not current_lines else [],
             "historical_sources": [ref(row, row.text) for row in rows],
             "current_cause_inferred": False,
         })
@@ -216,6 +218,7 @@ def build_packet(snapshot: Snapshot, principal_id: str, cutoff: str,
                 "role": scope.principal.role, "allowed_sites": list(scope.principal.allowed_sites),
                 "cutoff": cutoff}, "timeline": [], "corrections": [],
                 "comparisons": [], "requests": [], "typed": None,
+                "conflicted_source_ids": [], "conflicted_sources": [],
                 "packet_fingerprint": None}
     typed, requests = _extract(current, replayed, scope, snapshot.current_case_id)
     comparisons = _comparisons(snapshot, current)
@@ -237,7 +240,14 @@ def build_packet(snapshot: Snapshot, principal_id: str, cutoff: str,
         for row in replayed.superseded
         if row.case_id == snapshot.current_case_id
     ]
-    conflicted = [row.id for row in replayed.conflicted if row.case_id == snapshot.current_case_id]
+    conflicted_rows = [row for row in replayed.conflicted if row.case_id == snapshot.current_case_id]
+    conflicted = [row.id for row in conflicted_rows]
+    conflicted_sources = [
+        {"source_id": row.id, "revision": row.revision, "record_type": row.record_type,
+         "event_at": row.event_at, "recorded_at": row.recorded_at,
+         "content_sha256": row.content_sha256, "source_state": "conflicted"}
+        for row in conflicted_rows
+    ]
     state = "blocked_source_conflict" if conflicted else "reviewer_ready_with_open_questions"
     proposal_hash = canonical_hash({"typed": typed, "comparisons": comparisons,
                                     "timeline": timeline, "corrections": corrections})
@@ -251,7 +261,8 @@ def build_packet(snapshot: Snapshot, principal_id: str, cutoff: str,
                   "fixture_id": snapshot.fixture_id, "rule_version": "p10_cpu_baseline_v1"},
         "current_case_id": snapshot.current_case_id,
         "timeline": timeline, "corrections": corrections,
-        "conflicted_source_ids": conflicted, "comparisons": comparisons,
+        "conflicted_source_ids": conflicted, "conflicted_sources": conflicted_sources,
+        "comparisons": comparisons,
         "typed": typed, "requests": requests,
         "packet_fingerprint": fingerprint,
         "handoff_only": True, "operational_source_state_unchanged": True,

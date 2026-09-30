@@ -14,7 +14,7 @@ from playwright.async_api import async_playwright, expect
 
 OUT = ROOT / "artifacts" / "demo"
 OUT.mkdir(parents=True, exist_ok=True)
-URL = "http://127.0.0.1:19094/"
+URL = os.environ.get("P10_BASE_URL", "http://127.0.0.1:19094/")
 
 async def main():
     async with async_playwright() as p:
@@ -45,6 +45,7 @@ async def main():
         await page.screenshot(path=str(OUT / "04-source-drawer.png"), full_page=True)
         await asyncio.sleep(0.8)
         await page.locator("#close-source").click()
+        await page.locator("#principal").select_option("demo-reviewer-a")
         await page.locator("#review-button").click()
         await expect(page.locator("#review-result")).to_contain_text("인계 검토 수락")
         assert "미해결 질문 5건 포함" in await page.locator("#review-result").inner_text()
@@ -52,7 +53,9 @@ async def main():
         await asyncio.sleep(0.8)
         await page.locator("#capture").select_option("QDOC-012")
         await expect(page.locator("#sample-note")).to_contain_text("상충")
-        assert await page.locator("#review-button").is_disabled()
+        assert await page.locator("#review-button").is_enabled()
+        assert await page.locator("#decision").input_value() == "returned"
+        assert await page.locator('#decision option[value="accepted_for_handoff"]').evaluate("(option) => option.disabled")
         await page.screenshot(path=str(OUT / "06-conflict-block.png"), full_page=True)
         await asyncio.sleep(0.8)
         await page.locator("#capture").select_option("")

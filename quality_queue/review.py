@@ -31,7 +31,7 @@ class ReviewStore:
     def __init__(self, snapshot: Snapshot) -> None:
         self.snapshot = snapshot
         self._items: dict[str, Receipt] = {}
-        self._dedupe: dict[tuple[str, str, str], str] = {}
+        self._dedupe: dict[tuple[str, str, str, str], str] = {}
 
     def replace_snapshot(self, snapshot: Snapshot) -> None:
         # The server can refresh immutable source bytes; old receipts remain for
@@ -61,7 +61,7 @@ class ReviewStore:
             raise ReviewError("review_scope_denied")
         if decision == "accepted_for_handoff" and packet["state"] != "reviewer_ready_with_open_questions":
             raise ReviewError("handoff_blocked_by_source_conflict")
-        key = (packet_fingerprint, reviewer, decision)
+        key = (packet_fingerprint, reviewer, decision, reviewer_note)
         if key in self._dedupe:
             return self.status(self._dedupe[key], investigator, reviewer)
         now = datetime.now(timezone.utc).isoformat()
@@ -95,6 +95,8 @@ class ReviewStore:
                 "decision": receipt.decision if fresh else "stale",
                 "original_decision": receipt.decision,
                 "fresh": fresh, "at": receipt.at,
+                "cutoff": receipt.cutoff, "capture_id": receipt.capture_id,
+                "packet_fingerprint": receipt.packet_fingerprint,
                 "reviewer_note": receipt.reviewer_note,
                 "review_hash": receipt.review_hash,
                 "handoff_only": True, "operational_source_state_unchanged": True}
