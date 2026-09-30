@@ -40,27 +40,26 @@ Python 3.10+ 표준 라이브러리만으로 서버를 실행합니다. Node는 
 
     python3 -m unittest discover -s tests -v
     node --check static/app.js
-    python3 tests/browser_demo.py # Playwright, Chrome, 로컬 서버가 있을 때
+    python3 scripts/capture_current.py # Playwright, Chrome, ffmpeg가 있을 때; 별도 loopback 19110/19111
 
 ## 검증 결과와 화면
 
-2026-09-30 개발 체크포인트에서 **55개 CPU 계약/API 테스트**와 Node 구문 검사, 실제 Chrome 데스크톱·390px 브라우저 시나리오가 통과했습니다. 테스트 수는 엔지니어링 검사 수이며 진단 정확도 분모가 아닙니다. 브라우저 시나리오는 09:15의 5/50, 10:00의 4/50·수정 이력, 허용 원문, 열린 질문 5건의 검토 영수증, 상충 캡처의 수락 차단과 보완 반환, 세 상충 원문의 각각 열람, 현재 자료 가용 시각·캡처에 입장 가능한 검토 이력 새로고침과 JSON 내보내기, 지연된 원문·검토 응답과 cutoff 변경, 390px 가로 넘침 없음을 확인했습니다. 변경된 메모는 서버에 새 영수증으로 보존하되 자유 입력 메모 원문은 이력·내보내기 응답에서 숨깁니다. 다른 시점·캡처 영수증도 현재 이력에 나오지 않습니다.  현재 자료가 없는 과거 비교는 확인된 차이로 표시하지 않습니다.
+2026-10-01 UI 개편 확인에서 **55개 CPU 계약/API 테스트**와 Node 구문 검사, 실제 Chrome 데스크톱·390px 브라우저 시나리오가 통과했습니다. 테스트 수는 엔지니어링 검사 수이며 진단 정확도 분모가 아닙니다. 브라우저 시나리오는 09:15의 5/50, 10:00의 4/50·수정 이력, 허용 원문, 열린 질문 5건의 검토 영수증, 상충 캡처의 수락 차단과 보완 반환, 세 상충 원문의 각각 열람, 현재 자료 가용 시각·캡처에 입장 가능한 검토 이력 새로고침과 JSON 내보내기, 지연된 원문·검토 응답과 cutoff 변경, 390px 가로 넘침 없음을 확인했습니다. 변경된 메모는 서버에 새 영수증으로 보존하되 자유 입력 메모 원문은 이력·내보내기 응답에서 숨깁니다. 다른 시점·캡처 영수증도 현재 이력에 나오지 않습니다.  현재 자료가 없는 과거 비교는 확인된 차이로 표시하지 않습니다.
 
-| 실제 UI 캡처 | 상태 |
+| 현재 UI 캡처 | 검증한 작업 상태 |
 |---|---|
-| ![10시 기준 데스크톱 시간선](artifacts/demo/01-current-desktop.png) | 10:00 현재 4/50 |
-| ![09시15분 기준 화면](artifacts/demo/02-early-cutoff.png) | 09:15 당시 5/50, 미래 정정 비표시 |
-| ![정정 전 원문 이력](artifacts/demo/03-correction-history.png) | 5/50은 이력에만 유지 |
-| ![원문 상세](artifacts/demo/04-source-drawer.png) | 원문과 사건/자료 가용 시각 |
-| ![인계 검토](artifacts/demo/05-review-receipt.png) | 미해결 질문 5건 포함 수락 |
-| ![상충 원문 상태](artifacts/demo/06-conflict-block.png) | 현재 검사 수치 격리, 수락 차단 |
-| ![390px 화면](artifacts/demo/07-current-mobile.png) | 좁은 화면 작업 흐름 |
-| ![검토 이력과 내려받기](artifacts/ui-review/01-reviewer-history-desktop.png) | 새로고침 후 기록·JSON 내보내기 |
-| ![세 상충 출처](artifacts/ui-review/02-conflict-sources-desktop.png) | 격리된 세 원문 각각 확인·보완 반환 |
-| ![390px 상충 출처](artifacts/ui-review/03-conflict-sources-mobile.png) | 모바일에서도 출처 버튼·읽기 흐름 유지 |
-| ![지연 응답과 이전 cutoff](artifacts/ui-review/04-early-cutoff-after-delay.png) | 늦은 원문 응답이 새 맥락에 표시되지 않음 |
+| ![10시 기준 현재 사건 시간선](artifacts/demo/01-current-desktop.png) | 범위 선택, 현재 4/50, 시간선·선례·열린 요청 |
+| ![09시15분 기준 사건](artifacts/demo/02-early-cutoff.png) | 당시 5/50; 미래 정정 ID는 표시하지 않음 |
+| ![수정 전 원문 이력](artifacts/demo/03-correction-history.png) | 정정 전 5/50은 현재 사실이 아닌 이력 |
+| ![원문 상세](artifacts/demo/04-source-drawer.png) | 사건 시각·자료 가용 시각·원문 확인 |
+| ![인계 검토 영수증](artifacts/demo/05-review-receipt.png) | 열린 질문 5건 포함 수락, 로트 처분 아님 |
+| ![검토 이력과 JSON 내보내기](artifacts/ui-review/01-reviewer-history-desktop.png) | 현재 맥락의 이력 재조회와 내보내기 |
+| ![세 상충 원문과 보완 반환](artifacts/ui-review/02-conflict-sources-desktop.png) | 같은 revision 상충 원문 3개 열람; 수락 차단 |
+| ![지연 응답 뒤 이전 cutoff](artifacts/ui-review/04-early-cutoff-after-delay.png) | 늦은 원문 응답이 새 맥락에 반영되지 않음 |
+| ![390px 기본 화면](artifacts/demo/07-current-mobile.png) | 모바일 시간선·선례·요청 순서, 가로 넘침 없음 |
+| ![390px 상충 화면](artifacts/ui-review/03-conflict-sources-mobile.png) | 모바일에서 세 상충 원문·보완 반환 확인 |
 
-캡처는 실행 중인 로컬 앱을 Chrome에서 조작해 얻었고 편집해 성공을 꾸미지 않았습니다. 실제 Chrome 화면 녹화 [workflow.mp4](artifacts/demo/workflow.mp4)는 약 10초이며 UI에서 09:15/10:00·정정 이력·원문·인계·상충 상태를 조작한 과정입니다. [검증·캡처 기록](docs/test-manifest.md)에 실행 조건과 한계를 남겼습니다.
+캡처는 실행 중인 로컬 앱을 Chrome에서 조작해 얻었고 편집해 성공을 꾸미지 않았습니다. 실제 Chrome 화면 녹화 [workflow.mp4](artifacts/demo/workflow.mp4)는 9.48초이며 UI에서 09:15/10:00·정정 이력·원문·인계·상충 상태를 조작한 과정입니다. [검증·캡처 기록](docs/test-manifest.md)과 [새 화면별 SHA-256·이전 화면 구분](artifacts/demo/PROVENANCE.md)에 실행 조건과 한계를 남겼습니다. 갤러리의 이미지는 모두 현재 화면이고, 이전 11장은 역사 자료로 별도 보존했습니다.
 
 ## 데이터·모델·평가 경계
 

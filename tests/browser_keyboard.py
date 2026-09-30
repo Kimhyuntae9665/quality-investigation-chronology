@@ -1,8 +1,9 @@
 """Real Chrome keyboard regression for the fictional P10 loopback app."""
 import asyncio
+import os
 from playwright.async_api import async_playwright, expect
 
-URL = "http://127.0.0.1:19094/"
+URL = os.environ.get("P10_BASE_URL", "http://127.0.0.1:19094/")
 
 
 async def main():
