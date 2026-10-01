@@ -70,3 +70,7 @@ Python 3.10+ 표준 라이브러리만으로 서버를 실행합니다. Node는 
 ## 한계
 
 원문 해시·인용 span의 일치는 원인 판단의 의미적 타당성, 물리적 격리, GMP 적합성, 실제 제조 품질 개선을 입증하지 않습니다. 문장 추출 규칙은 이 작은 영어 합성 기록의 제한된 서식에 맞춰져 있습니다. 검토 영수증은 메모리 안의 데모 기록이고 브라우저의 역할 선택은 인증이 아닙니다. 원문 텍스트에 있는 지시는 데이터일 뿐 실행 명령으로 사용하지 않습니다. [복사한 MIT 코드의 출처](docs/code-provenance.md)를 기록했습니다. 향후 모델 출력을 쓰더라도 입장·정정·수량 계산·검토 권한은 서버가 결정합니다.
+
+## Windows CPU startup
+
+`.gitattributes` keeps hashed source files in LF form even when Git uses `core.autocrlf=true`; do not rewrite fixture bytes or regenerate source manifests to bypass an integrity failure. From a fresh clone, run `python -X utf8=0 scripts/check_startup.py` for a model-free startup/integrity check. The same check runs on Windows CI. Optional local-model lease and model-runner tests still require Linux/POSIX; this CPU startup check does not claim Windows inference support.
